@@ -1,0 +1,258 @@
+%Include packages in the text
+\usepackage{latexsym} %% Latex font
+\usepackage{multicol} %% Multiple columns for tables
+\usepackage{multirow} %% Multiple Rows for tables
+\usepackage{booktabs} %% Rules separation for tables (Top, mid, bottom)
+% Graphics
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{url} %% URL directions 
+\usepackage{amssymb} %% Math symbols
+\usepackage{graphicx} %% Graphics
+\usepackage{epic}\setlength{\unitlength}{1cm}
+\usepackage{eepic}\setlength{\unitlength}{1cm}
+%% Language
+\usepackage[spanish,american]{babel}
+\usepackage[utf8]{inputenc} %% For accents 
+\usepackage{array}
+\usepackage{natbib} %% Bibliography
+\usepackage{float}
+\usepackage{chngpage}
+%% Maths
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm} 
+\usepackage{xfrac}
+\usepackage{cancel}
+\usepackage{mathrsfs} % Z transform
+%%Units
+\usepackage{natbib}
+\usepackage{float}
+\usepackage[dvipdfm]{hyperref}
+\usepackage{chngpage}
+\usepackage{listings}
+\usepackage{lscape} 
+%€ symbol
+\usepackage{textcomp}
+\usepackage{latexsym}
+
+%------------------- Margins ------------------
+\oddsidemargin = .5in
+\evensidemargin = .2in
+\textwidth = 5.6in
+
+\headheight = 0.0in
+\headsep = 0.5in
+\topmargin = 0.25in
+\textheight = 7.5in
+\topskip = .0in
+
+\floatsep = .29in
+\textfloatsep = \floatsep
+\intextsep = \floatsep
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Almost everything is double spaced.
+%
+\newcommand{\spacing}{1.1}
+\renewcommand{\baselinestretch}{\spacing}
+
+
+% Eliminate "Chapter X"
+\renewcommand{\@makechapterhead}[1]{%
+	\vspace*{50\p@}%
+	{\parindent \z@ \raggedright \normalfont
+		\ifnum \c@secnumdepth >\m@ne
+			\huge\bfseries \@chapapp\space \thechapter
+			\par\nobreak
+			\vskip 20\p@
+			\fi
+			\interlinepenalty\@M
+			\Huge \bfseries #1\par\nobreak
+			\vskip 40\p@
+	}}
+
+
+
+% Footnotes are to be single spaced.
+%
+\newcommand{\munfootnote}[1]{%
+	\renewcommand{\baselinestretch}{1.0}%
+	\footnote{#1}%
+	\renewcommand{\baselinestretch}{\spacing}%
+}
+
+% Lengthy quotes must also be single spaced.
+% We provide a parameter for the citation label too.
+%
+\newcommand{\munquote}[2]{%
+	\renewcommand{\baselinestretch}{1.0}%
+	\normalsize
+	\begin{quote}{``\textsl{#1}''~\cite{#2}}\end{quote}
+	\renewcommand{\baselinestretch}{\spacing}%
+	\normalsize
+}
+
+\hyphenpenalty=5000
+\tolerance=1000
+
+% ------------------ Fancy headers ----------------------
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{\thechapter.\ #1}{}}
+
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection.\ #1}{}}
+
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\fancypagestyle{plain}{%
+\fancyhead{} % get rid of headers
+\renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+% ------------------ End Fancy headers ----------------------
+
+% --------------------- Special Data ------------------------
+%MATH
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\spectralnorm}[1]{\left|\left|#1\right|\right|_{2}}
+% --------------------- End Special Data ------------------------
+
+
+
+% Command for creating the book title page 
+% For usage example, see book.tex.
+%
+\newcommand{\booktitle}[6]{%
+	\thispagestyle{empty}
+	\begin{center}
+
+	\renewcommand{\baselinestretch}{2.0}
+	\textbf{\Large #1}\\
+	\vspace{0.75cm}
+	\textbf{\large #2}\\
+	\end{center}
+
+	%\vspace{-0.75cm}
+	%\hspace{5.25cm}\includegraphics[width=5cm]{ies.eps}
+	\vspace{0.5cm}
+	\begin{center}
+	\includegraphics[width=6.5cm]{../figs/rblb.eps}
+	\end{center}
+
+	\begin{center}
+	\vspace{0.5cm}
+	\textbf{#3}\\
+
+	\vspace{1.5cm}
+
+	\baselineskip=20pt
+	\textbf{\textbf{\LARGE #4}}\\
+
+	\vspace{4.5cm}
+	\baselineskip = 20pt
+
+	\end{center}
+
+
+{	\raggedleft
+		\textbf{\Large Author:}\\
+		{\Large {#5}} \\
+}
+
+\vspace{0.75cm}
+
+{	\raggedright
+		\textbf{\Large Date:}\\
+		{\Large #6}\\
+}
+}
+
+%
+% The \munepsfig command is used to insert a new EPS figure 
+% into our document.  Usage is:
+%
+%	\munepsfig[scale]{filename}{caption}
+%
+% Note:
+%	- scale is optional (defaults to 1.0)
+%	- Assumes that the EPS file is in the 'figures' directory.
+% 	- 'filename' should not include the filename extension.
+%	- 'filename' also serves as the label for the figure.
+%	- Ideally, we'd want to create a \newenvironment to do this
+%	  but because the caption must appear below the figure, this
+%	  doesn't appear to be possible.
+%
+\newcommand{\munepsfig}[3][1.0]{%
+	\begin{figure}[!htbp]
+	\centering
+	\vspace{2mm}
+	\scalebox{#1}{\includegraphics{figures/#2.eps}}
+	\caption{#3}
+	\label{fig:#2}
+	\end{figure}
+}
+
+%
+% The \munfig command is used to insert 'textual' figures
+% into our document.  Usage is:
+%
+%	\munfig{caption}{label}{content}
+%
+\newcommand{\munfig}[3]{%
+	\begin{figure}[!htbp]
+	\centering
+	\vspace{2mm}
+	#3
+	\caption{#1}
+	\label{fig:#2}
+	\end{figure}
+}
+
+%
+% The \muntab command is used to insert a new table into our document.
+% Usage is:
+%
+%	\muntab{table_format}{label}{caption}{table_contents}
+%
+% Note that we could have created a \newenvironment, but opted for
+% a \newcommand so as to be consistent with the \munepsfig command.
+%
+\newcommand{\muntab}[4]{%
+	\begin{table}[!htbp]
+	\centering
+	\caption{#3}
+	\label{tab:#2}
+	\vspace{2mm}
+	\begin{tabular}{#1}
+	#4
+	\end{tabular}
+	\end{table}
+}
+
+%
+% The \muneqn command is used to add an equation to the thesis.
+% Usage is 
+%
+%	\muneqn{label}{equation_body}
+%
+\newcommand{\muneqn}[2]{%
+	\begin{equation}
+	\centering
+	\label{eqn:#1}
+	#2
+	\end{equation}
+}
+
+%
+% For theorems and corollaries.
+%
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}

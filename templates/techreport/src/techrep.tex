@@ -1,0 +1,41 @@
+\documentclass[a4paper, oneside, 11pt]{article}
+
+\usepackage{techrep}
+\graphicspath{ {../figs/} }
+% abbreviations:
+\input{glossary}
+% nomenclature:
+\makeglossaries
+
+%%Tittle parameters
+\TRauthors{AUTHOR1}
+\TRorganization{ORGANIZATION}
+\TRweb{WEB}
+\TRtitle{TITLE}
+\TRcode{CODE}
+
+\begin{document}
+
+%Cover
+\techtitle
+\newpage
+%Index
+\tableofcontents
+\newpage 
+%Acronyms and Symbols Sections
+\phantomsection
+\renewcommand{\acronymname}{List of Acronyms and Symbols}
+\addcontentsline{toc}{section}{List of Acronyms and Symbols}
+\setlist[description]{leftmargin=!, labelwidth=5em} % Change for glossaries
+\printglossaries
+\newpage
+%Text
+\section{Introduction}
+\Gls{acro} 
+\citep{ExArt01}
+
+%%Bibliography 
+\bibliographystyle{apa}
+\bibliography{biblio}
+
+\end{document}

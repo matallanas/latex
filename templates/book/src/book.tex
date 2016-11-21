@@ -1,0 +1,67 @@
+\documentclass[twoside,a4paper,11pt]{report}
+
+\usepackage{book}
+
+\begin{document}
+\pagenumbering{roman}
+
+%%%%%%%%%%%%%%%%%%%%% PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\changepage{2in}{}{}{-0.2in}{}{-0.6in}{}{}{}
+\thispagestyle{empty}
+\booktitle
+	{TECHNICAL UNIVERSITY OF MADRID}
+	{ROBOLAB}
+	{COMPLEMENTARY INFO}
+	{DOCUMENT TITLE}
+	{Eduardo Matallanas de \'{A}vila}
+	{\today}
+
+\newpage
+\changepage{-1.5in}{}{}{0.2in}{}{0.5in}{}{}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\listtablename}{List of Tables}
+\renewcommand{\tablename}{Table}
+
+%%%%%%%%%%%%%%%%%%%%% CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\baselineskip=15pt
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%% TABLES  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\pagenumbering{arabic}
+\renewcommand{\labelitemi}{$\bullet$}
+\baselineskip=20pt
+
+\input {introduction}
+\input {conclusions}
+
+\begin{appendix}
+	\input{appendix}
+\end{appendix}
+
+\bibliographystyle{apa}
+\bibliography{biblio}
+
+\end{document}

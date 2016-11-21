@@ -1,0 +1,74 @@
+\usepackage[utf8]{inputenc}
+\usepackage[dvipdfm]{hyperref}
+\usepackage{graphicx}
+\usepackage{epic}\setlength{\unitlength}{1cm}
+\usepackage{eepic}\setlength{\unitlength}{1cm}
+\usepackage{amssymb}
+\usepackage{anysize}
+\usepackage{natbib} %% Bibliography
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{pstricks}
+
+%------------------- Parameters -------------------
+\newcommand{\TRauthors}[1]{\def\iTRauthors{#1}}
+\newcommand{\TRorganization}[1]{\def\iTRorganization{#1}}
+\newcommand{\TRweb}[1]{\def\iTRweb{#1}}
+\newcommand{\TRtitle}[1]{\def\iTRtitle{#1}}
+\newcommand{\TRcode}[1]{\def\iTRcode{#1}}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%------------------- Margins -------------------
+\baselineskip=15pt
+\parskip = 10pt
+\marginsize{3cm}{3cm}{2cm}{2cm}
+
+%------------------- Hyperref ------------------
+\definecolor{dark-red}{rgb}{0.6,0.15,0.15}
+\definecolor{dark-blue}{rgb}{0.15,0.15,0.6}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = medium-blue, %Colour for external hyperlinks
+  linkcolor    = dark-red, %Colour of internal links
+  filecolor    = cyan,
+  citecolor    = dark-blue %Colour of citations
+}
+
+%------------------- TechReport title ------------------
+\newcommand{\techtitle}{%
+  %Cover
+  \begin{titlepage}
+  \begin{center}
+  % Title
+  \includegraphics[width=0.4\textwidth]{logo.eps}\\[1.5cm]
+  \HRule \\[0.4cm]
+  { \huge \bfseries \iTRtitle \\[0.4cm] }
+  \HRule \\[1.5cm]
+  {\Large
+  TR/\iTRorganization/\iTRcode\\[1.5cm]
+  \emph{Developed by} {\bf \iTRorganization} \\[0.3cm]
+  }
+  \ifx\iTRweb\empty
+  \else
+    \href{\iTRweb}{\iTRweb}
+  \fi
+  % Bottom of the page
+  \vfill
+  %Authors
+  \begin{flushleft} \large
+  \emph{Authors:}\\
+  \foreach \x in \iTRauthors {
+    \x \\
+  }
+  \end{flushleft}
+  \vspace{1.0cm}
+  % Date
+  {\large \today}
+  \end{center}
+  \end{titlepage}
+
+}
+
+
