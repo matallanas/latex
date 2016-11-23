@@ -1,0 +1,667 @@
+%Include packages in the text
+\usepackage{latexsym} %% Latex font
+\usepackage{multicol} %% Multiple columns for tables
+\usepackage{multirow} %% Multiple Rows for tables
+\usepackage{booktabs} %% Rules separation for tables (Top, mid, bottom)
+% Graphics
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{url} %% URL directions 
+\usepackage{amssymb} %% Math symbols
+\usepackage{graphicx} %% Graphics
+\usepackage{epic}\setlength{\unitlength}{1cm}
+\usepackage{eepic}\setlength{\unitlength}{1cm}
+%% Language
+\usepackage[spanish,american]{babel}
+\usepackage[utf8]{inputenc} %% For accents 
+\usepackage{array}
+\usepackage{natbib} %% Bibliography
+\usepackage{float}
+\usepackage{chngpage}
+%% Maths
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm} 
+\usepackage{xfrac}
+\usepackage{cancel}
+\usepackage{mathrsfs} % Z transform
+%%Units
+\usepackage{units}
+%% Organize Algorithms 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%% Colors
+\usepackage{color}
+\usepackage{xcolor}
+%% Hyperreferences links colors
+\usepackage[dvipdfm]{hyperref} 
+\usepackage{longtable}
+\usepackage[
+  nonumberlist, %do not show page numbers
+  acronym,      %generate acronym listing
+  toc         %show listings as entries in table of contents
+  ]{glossaries} %% Glossary and acronyms
+\usepackage{marginnote} %%Notes in the margin
+\usepackage{enumitem}
+\usepackage{lettrine} %First Letter of the paragraph bigger 
+\usepackage{type1cm} % scalable fonts
+\usepackage{lipsum} %Lorem ipsum
+%Captions
+\usepackage[labelfont=bf]{caption}
+\usepackage[bf,TABBOTCAP]{subfigure} %For subfigures
+%\usepackage[list=false,labelformat=simple]{subcaption} %Another form of doing subfigures
+%\renewcommand\thesubfigure{(\alph{subfigure})} %Add parenthesis to the ref
+\usepackage{supertabular}
+%\usepackage{mathtools}
+%\usepackage[]{algorithm2e}
+%\usepackage{palatino}
+
+
+%------------------- Margins ------------------
+\oddsidemargin = .5in
+\evensidemargin = .2in
+\textwidth = 5.6in
+
+\headheight = 0.0in
+\headsep = 0.5in
+\topmargin = 0.0in
+\textheight = 9.1in
+\topskip = .0in
+\voffset=-0.1in
+
+\floatsep = .29in
+\textfloatsep = \floatsep
+\intextsep = \floatsep
+
+%\bibliographystyle{abbrv}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Almost everything is double spaced.
+%
+\newcommand{\spacing}{1.1}
+\renewcommand{\baselinestretch}{\spacing}
+
+% Footnotes are to be single spaced.
+%
+\newcommand{\munfootnote}[1]{%
+	\renewcommand{\baselinestretch}{1.0}%
+	\footnote{#1}%
+	\renewcommand{\baselinestretch}{\spacing}%
+}
+
+% Lengthy quotes must also be single spaced.
+% We provide a parameter for the citation label too.
+%
+\newcommand{\munquote}[2]{%
+	\renewcommand{\baselinestretch}{1.0}%
+	\normalsize
+	\begin{quote}{``\textsl{#1}''~\cite{#2}}\end{quote}
+	\renewcommand{\baselinestretch}{\spacing}%
+	\normalsize
+}
+
+%------------------- Glossary Style ------------------
+\renewcommand*{\glspostdescription}{}
+
+\newglossarystyle{mylist}{
+  \setlist[description]{leftmargin=!, labelwidth=3.25em} % Change for glossaries
+  \glossarystyle{list}% base this style on the list style
+
+  \renewenvironment{theglossary}{
+  \begin{multicols}{2}\begin{description}}{\end{description}\end{multicols}}   % the default environment for list is \begin{description} \end{description}
+} 
+
+\newglossarystyle{mysymbol}{%
+\setlist[description]{leftmargin=!, labelwidth=0em, labelsep=-0.05em} % Change for glossaries
+  \glossarystyle{list}% base this style on the list style
+
+  \renewenvironment{theglossary}{
+  \begin{multicols}{2}\begin{description}}{\end{description}\end{multicols}}   % the default environment for list is \begin{description} \end{description}
+  \renewcommand{\glossentry}[2]{%
+    \item[]
+      \begin{tabular}{p{0.075\textwidth}>{\centering\arraybackslash}p{0.03\textwidth}p{0.3\textwidth}}
+      \boldmath\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}&
+      \glossentrysymbol{##1} &
+      \Glossentrydesc{##1}\glspostdescription\space ##2\\
+    \end{tabular}
+    }
+    
+} 
+  %\renewenvironment{theglossary}%
+  %{\begin{longtable}[l]{llp{\glsdescwidth}p{\glspagelistwidth}}}%
+  %{\end{longtable}}%
+  %\renewcommand*{\glossaryheader}{}%
+  %\renewcommand*{\glsgroupheading}[1]{}%
+  %\renewcommand{\glossentry}[2]{%
+    %\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+    %\glossentrysymbol{##1} &
+    %\Glossentrydesc{##1} &
+    %##2\tabularnewline
+  %}%
+  %\renewcommand{\subglossentry}[3]{%
+    %&
+    %\glssubentryitem{##2}%
+    %\glossentrysymbol{##2} &
+    %\glstarget{##2}{\strut}\glossentrydesc{##2} & ##3\tabularnewline
+  %}%
+  %\renewcommand*{\glsgroupskip}{%
+  %\ifglsnogroupskip\else & & &\tabularnewline\fi}%
+  %}
+
+
+%------------------- Thesis title ------------------
+% Command for creating the thesis title page in accordance with the
+% requirements of the School of Graduate Studies.
+% For usage example, see thesis.tex.
+%
+\newcommand{\thesistitle}[8]{%
+\thispagestyle{empty}
+\begin{center}
+
+\renewcommand{\baselinestretch}{3.0}
+\textbf{{\large #1}}\\
+\textbf{{\large #2}}\\
+%\textbf{#3}\\
+
+\vspace{2.0cm}
+\includegraphics[width=8cm]{etsit.eps}
+\vspace{0.5cm}
+
+%\textbf{#4}\\
+
+\vspace{1.5cm}
+
+\baselineskip=30pt
+\textbf{\textbf{\huge #3}}\\
+
+\vspace{1.8cm}
+\baselineskip = 20pt
+
+\end{center}
+
+\begin{center}
+	\textbf{\Large Autor:} \\
+\end{center}
+	
+\vspace{0.01cm}
+
+\begin{center}
+	\textbf{\Large {#4}} \\
+  {#5} \\
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+\textbf{\Large Director:} \\
+\end{center}
+
+\vspace{0.01cm}
+\begin{center}
+	\textbf{\Large {#6}} \\
+  {#7} \\
+\end{center}
+%\begin{flushleft}
+%\begin{tabular}{ll}
+%	\textbf{\Large Autor: } 			& \textbf{\Large {D. #6}}\\
+%	\textbf{\Large Directores: } 	& \textbf{\Large {Dr. D. #7}}\\
+%	& \textbf{\Large {Dr. D. #8}}\\
+%\end{tabular}
+%\end{flushleft}
+
+\vspace{1.5cm}
+
+\begin{center}
+%\textbf{\Large A\~{n}o:  #9}
+\textbf{\Large #8}
+\end{center}
+
+}
+
+% Command for creating the thesis title page in accordance with the
+% requirements of the School of Graduate Studies.
+% For usage example, see thesis.tex.
+%
+\newcommand{\thesistitleDual}[9]{%
+\thispagestyle{empty}
+\begin{center}
+
+\renewcommand{\baselinestretch}{3.0}
+\textbf{{\large #1}}\\
+\textbf{{\large #2}}\\
+%\textbf{#3}\\
+
+\vspace{2.0cm}
+\includegraphics[width=8cm]{etsit.eps}
+\vspace{0.5cm}
+
+%\textbf{#4}\\
+
+\vspace{1.5cm}
+
+\baselineskip=30pt
+\textbf{\textbf{\huge #3}}\\
+
+\vspace{1.8cm}
+\baselineskip = 20pt
+
+%\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccc}
+  \multicolumn{3}{c}{\textbf{\Large Autor: }}\\
+  & & \\
+  \multicolumn{3}{c}{\textbf{\Large {#4}}}\\
+  \multicolumn{3}{c}{{#5}} \\
+  & & \\
+  & & \\
+  \multicolumn{3}{c}{\textbf{\Large Directores: }}\\ 	
+  & & \\
+  \textbf{\Large {#6}} & & \textbf{\Large {#8}} \\
+  {#7} & & {#9}\\
+\end{tabular}
+%}
+\end{center}
+
+\thesistitleDualcontinue
+}
+\newcommand{\thesistitleDualcontinue}[1]{%
+\vspace{3.5cm}
+\begin{center}
+\textbf{\Large #1}
+\end{center}
+}
+
+%------------------- Thesis court ------------------
+%The style to elaborate a thesis court for your
+%presentation project
+\newcommand{\thesiscourt}[9]{%
+\thispagestyle{empty}
+\noindent
+Tribunal nombrado por el Mgfco. y Excmo. Sr. Rector de la {#1}.
+
+\vspace{0.5cm}
+\begin{flushleft}
+	\begin{tabular}{ll}
+  Presidente/a:      & {#2} \\%D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Secretario/a:      & {#3} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal 1:  	       & {#4} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal 2:  	       & {#5} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal 3:  	       & {#6} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Suplente 1:        & {#7} \\  %Dr. D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Suplente 2:        & {#8} \\ %D. $\line(1,0){10}$ \\
+	\end{tabular}
+\end{flushleft}
+
+\vspace{1cm}
+
+\noindent
+\begin{flushright}
+Realizando el acto de defensa y lectura de la Tesis en {#9},\\ 
+\end{flushright}
+\thesisCourtContinue
+}
+\newcommand{\thesisCourtContinue}[1]{%
+\begin{flushright}
+el d\'{i}a $\line(1,0){2}$ de $\line(1,0){3}$ de {#1}.
+\end{flushright}
+
+%\vspace{0.5cm}
+
+%\noindent
+%En la E.T.S. de Ingenieros de Telecomunicaci\'{o}n. 
+
+\vspace{1cm}
+
+\noindent
+%CALIFICACI\'{O}N:
+%\vspace{0.5cm}
+Acuerdan otorgar la calificaci\'{o}n de: $\line(1,0){8}$
+
+\baselineskip=11pt
+\vspace{0.35cm}
+\noindent
+Y, para que conste, se extiende firmada por los componentes del tribunal, la presente diligencia
+\vspace{0.35cm}
+
+%\begin{flushleft}
+	%\begin{tabular}{lp{6.5cm}r}
+		%EL/LA PRESIDENTE/A & &LOS VOCALES \\
+		%\rule{0cm}{2cm} & \rule{0cm}{2cm} & \rule{0cm}{2cm} \\
+		%& \begin{center}EL/LA SECRETARIO/A \end{center}& 
+	%\end{tabular}
+%\end{flushleft}
+\begin{center}
+\resizebox{0.95\textwidth}{!}{%
+  \begin{tabular}{ccc}
+    \multicolumn{3}{c}{
+      \begin{tabular}{cc}
+        El/La Presidente/a & El/La Secretario/a \\
+		    \rule{0cm}{1.5cm} & \rule{0cm}{1.5cm} \\
+		    Fdo: $\line(1,0){3.5}$ &  Fdo: $\line(1,0){3.5}$ \\
+      \end{tabular}
+    }\\ 
+    & & \\
+    & & \\
+	  El/La Vocal 1 & El/La Vocal 2 & El/La Vocal 3 \\
+		\rule{0cm}{1.5cm} & \rule{0cm}{1.5cm} & \rule{0cm}{1.5cm} \\
+		Fdo: $\line(1,0){3.5}$ &  Fdo: $\line(1,0){3.5}$ &  Fdo: $\line(1,0){3.5}$ \\
+	\end{tabular}
+}
+\end{center}
+
+
+}
+%%Second Implementation
+\newcommand{\thesiscourtOld}[9]{%
+\thispagestyle{empty}
+\noindent
+Tribunal nombrado por el Mgfco. y Excmo. Sr. Rector de la {#1},
+%el d\'{i}a $\line(1,0){3}$ de $\line(1,0){3}$ de 2014.
+
+\vspace{0.5cm}
+\begin{flushleft}
+	\begin{tabular}{ll}
+  Presidente/a:      & {#2} \\%D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Secretario/a:      & {#3} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal:  	         & {#4} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal:  	         & {#5} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Vocal:  	         & {#6} \\ %D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Suplente:          & {#7} \\  %Dr. D. $\line(1,0){10}$ \\
+	\rule{0cm}{0.25cm} & \rule{0cm}{0.25cm} \\
+  Suplente:          & {#8} \\ %D. $\line(1,0){10}$ \\
+	\end{tabular}
+\end{flushleft}
+
+\vspace{1cm}
+
+\noindent
+\begin{flushright}
+Realizando el acto de defensa y lectura de la Tesis en {#9},\\ 
+\end{flushright}
+\thesisCourtOldContinue
+}
+\newcommand{\thesisCourtOldContinue}[1]{%
+\begin{flushright}
+el d\'{i}a $\line(1,0){2}$ de $\line(1,0){3}$ de {#1}.
+\end{flushright}
+
+\vspace{1cm}
+
+\noindent
+CALIFICACI\'{O}N: $\line(1,0){5}$
+\vspace{0.5cm}
+
+\begin{center}
+	\begin{tabular}{cp{6.25cm}c}
+		EL/LA PRESIDENTE/A & &LOS VOCALES \\
+		\rule{0cm}{2cm} & \rule{0cm}{2cm} & \rule{0cm}{2cm} \\
+		& \begin{center}EL/LA SECRETARIO/A \end{center}& 
+	\end{tabular}
+\end{center}
+
+}
+%------------------- Chapter Layout ------------------
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+%\usepackage[Rejne]{fncychap}
+
+
+%\usepackage[grey]{quotchap}
+
+%%Number over the chapter
+\usepackage[pagestyles,explicit]{titlesec}
+\usepackage{blindtext}  % drop in actual document
+
+\definecolor{halfgray}{gray}{0.85}
+\newcommand*{\chapnumfont}{%
+  \usefont{T1}{jkp}{b}{n}%
+  \fontsize{100}{120}%
+  \selectfont%
+}
+\newcommand*{\chaptitlefont}{%
+  %\usefont{T1}{qhv}{b}{n}%
+  \fontsize{22}{26}%
+  \selectfont%
+}
+
+
+\titleformat{name=\chapter}
+{\normalfont\huge\bfseries}
+%%%Over the number
+{\filleft\parbox{0.35\textwidth}{\filleft\chapnumfont\color{halfgray}\thechapter}\qquad}
+{0pt}
+{\filleft\llap{\parbox{\textwidth}{\filleft\chaptitlefont #1}}}
+[\vspace{2pc}{\titlerule[2pt]}]
+%% Next to the number
+%{\rlap{\parbox{\textwidth}{\filleft\chapnumfont\color{halfgray}\thechapter}}}
+%{0pt}
+%{\rlap{\parbox{0.7\textwidth}{\filright\chaptitlefont #1}}}
+%[\vspace{1pc}{\titlerule[2pt]}\thispagestyle{empty}]
+%\titleformat{\section}%
+
+%% Part style
+\assignpagestyle{\part}{empty}
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}[display]
+{\centering\normalfont\Huge\bfseries}
+{\titlerule[2pt]\vspace{3pt}\titlerule[1pt]\vspace{3pt}\MakeUppercase{\partname} \thepart}
+{0pt}
+{\titlerule[2pt]\vspace{1pc}\huge\MakeUppercase #1}
+\assignpagestyle{\part}{empty}
+
+%\makeatletter
+%\renewcommand\part{%
+	%\if@openright
+		%\cleardoublepage
+	%\else
+		%\clearpage
+	%\fi
+	%\thispagestyle{empty}%
+	%\if@twocolumn
+		%\onecolumn
+		%\@tempswatrue
+	%\else
+		%\@tempswafalse
+	%\fi
+	%\null\vfil
+	%\secdef\@part\@spart}
+%\makeatother 
+
+%------------------- Hyperref ------------------
+\definecolor{dark-red}{rgb}{0.6,0.15,0.15}
+\definecolor{dark-blue}{rgb}{0.15,0.15,0.6}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = medium-blue, %Colour for external hyperlinks
+  linkcolor    = dark-red, %Colour of internal links
+  filecolor    = red,
+  citecolor    = dark-blue %Colour of citations
+}
+%\hypersetup{draft}
+
+% ------------------ Fancy headers ----------------------
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\chaptermark}[1]{%
+\markboth{\thechapter.\ #1}{}}
+
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection.\ #1}{}}
+
+\fancyhf{}
+%\fancyhf[CE,CO]{\thepage}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+%\fancyhead[RO]{}
+%\fancyhead[LE]{}
+\fancypagestyle{plain}{%
+	\fancyhead{} % get rid of headers
+	\renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+% ------------------ Hyphenation ----------------------
+\hyphenpenalty=5000
+\tolerance=1000
+\widowpenalty=10000
+\clubpenalty=10000
+% --------------------- Special Data ------------------------
+%MATH
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\spectralnorm}[1]{\left|\left|#1\right|\right|_{2}}
+
+% --------------------- End Special Data ------------------------
+
+\newtheorem{property}{Property}
+\newtheorem{conjecture}{Conjecture}
+
+\newenvironment{myindentpar}[2]%
+{\begin{list}{}{%
+	\setlength{\leftmargin}{#1}%
+	\setlength{\rightmargin}{#2}
+	}
+	\item[]%
+}
+{\end{list}}
+
+%------------------- Figure ------------------
+%
+% The \munepsfig command is used to insert a new EPS figure 
+% into our document.  Usage is:
+%
+%	\munepsfig[scale]{filename}{caption}
+%
+% Note:
+%	- scale is optional (defaults to 1.0)
+%	- Assumes that the EPS file is in the 'figures' directory.
+% 	- 'filename' should not include the filename extension.
+%	- 'filename' also serves as the label for the figure.
+%	- Ideally, we'd want to create a \newenvironment to do this
+%	  but because the caption must appear below the figure, this
+%	  doesn't appear to be possible.
+%
+\newcommand{\munepsfig}[3][1.0]{%
+	\begin{figure}[!htbp]
+	\centering
+	\vspace{2mm}
+	\scalebox{#1}{\includegraphics{figures/#2.eps}}
+	\caption{#3}
+	\label{fig:#2}
+	\end{figure}
+}
+
+%------------------- Figure ------------------
+%
+% The \munfig command is used to insert 'textual' figures
+% into our document.  Usage is:
+%
+%	\munfig{caption}{label}{content}
+%
+\newcommand{\munfig}[3]{%
+	\begin{figure}[!htbp]
+	\centering
+	\vspace{2mm}
+	#3
+	\caption{#1}
+	\label{fig:#2}
+	\end{figure}
+}
+
+%------------------- Table ------------------
+%
+% The \muntab command is used to insert a new table into our document.
+% Usage is:
+%
+%	\muntab{table_format}{label}{caption}{table_contents}
+%
+% Note that we could have created a \newenvironment, but opted for
+% a \newcommand so as to be consistent with the \munepsfig command.
+%
+\newcommand{\muntab}[4]{%
+	\begin{table}[!htbp]
+	\centering
+	\caption{#3}
+	\label{tab:#2}
+	\vspace{2mm}
+	\begin{tabular}{#1}
+	#4
+	\end{tabular}
+	\end{table}
+}
+
+%------------------- Equation ------------------
+%
+% The \muneqn command is used to add an equation to the thesis.
+% Usage is 
+%
+%	\muneqn{label}{equation_body}
+%
+\newcommand{\muneqn}[2]{%
+	\begin{equation}
+	\centering
+	\label{eqn:#1}
+	#2
+	\end{equation}
+}
+
+%------------------- Theorems and Corollaries ------------------
+%\theoremstyle{definition}
+\newtheoremstyle{mytheoremstyle} % name
+    {\topsep}                    % Space above
+    {0.1pt}                    % Space below
+    {\itshape}                   % Body font
+    {}                           % Indent amount
+    {\bf}                   % Theorem head font
+    {.}                          % Punctuation after theorem head
+    {.5em}                       % Space after theorem head
+    {}  % Theorem head spec (can be left empty, meaning ‘normal’)
+\theoremstyle{mytheoremstyle}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+
+%------------------- Margin Notes ------------------
+\newcommand{\mnote}[1]{%
+  \mbox{}\marginnote{\scriptsize#1}%
+}
+
+%------------------- First letter chapter ------------------
+\newcommand{\firstletter}[2]{%
+  \lettrine[lines=4, lhang=-0.5, nindent=0.25em]{#1}{#2}%
+}
+
+
+%------------------- First letter chapter ------------------
+\newcommand{\quotes}[2]{%
+  \vspace{-2cm}
+  \parbox{9cm}{
+    %\hspace{0.15cm}
+    \raggedright
+    {\footnotesize\itshape {#1} --- {#2}}
+  }
+  \vspace{1.25cm}
+}
+
+\newcommand{\quoteslines}[2]{%
+  \vspace{-2.5cm}
+  \parbox{8.5cm}{
+    %\hspace{0.15cm}
+    \raggedright
+    {\footnotesize\itshape {#1} \\ --- {#2}}
+  }
+  \vspace{1.25cm}
+}
+
+%------------------- Myparagraph title break line ------------------
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}

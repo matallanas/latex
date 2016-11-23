@@ -1,0 +1,195 @@
+%\documentclass[12pt]{report}
+\documentclass[twoside,a4paper,11pt]{book}
+
+\usepackage{thesis}
+\graphicspath{ {../figs/} }
+
+% --------------------- Glossary ------------------------
+% abbreviations:
+\newacronym{pv}{PV}{Photovoltaic}
+
+\newglossaryentry{i}{
+  name        = $i$,
+  description = electric current,
+  symbol      = [\unit[]{A}]
+}
+
+% nomenclature:
+\makeglossaries
+
+% -------------------- Begin Document ----------------------------
+\begin{document}
+\pagenumbering{roman}
+
+\selectlanguage{spanish}
+%%%%%%%%%%%%%%%%%%%%% 1st Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\changepage{1.5in}{}{}{}{}{-0.5in}{}{}{}
+
+\thesistitleDual
+	{DEPARTAMENTO}
+  {Escuela T\'{e}cnica Superior de Ingenieros de Telecomunicaci\'{o}n}
+  {T\'{I}TULO}
+	{AUTOR}
+  {T\'{I}TULO ACAD\'{E}MICO}
+	{DIRECTOR 1}
+  {T\'{I}TULO ACAD\'{E}MICO}
+	{DIRECTOR 2}
+  {T\'{I}TULO ACAD\'{E}MICO}
+  {A\~{N}O}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% Blank Page %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\changepage{-1.5in}{}{}{}{}{0.5in}{}{}{}
+\thispagestyle{empty}
+\mbox{}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% JURY %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thesiscourt
+  {UNIVERSIDAD}
+  {PRESIDENTE}
+  {SECRETARIO}
+  {VOCAL1}
+  {VOCAL2}
+  {VOCAL3}
+  {SUPLENTE1}
+  {SUPLENTE2}
+  {ESCUELA, LUGAR}
+  {A\~{N}O}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\thesiscourtOld
+  {UNIVERSIDAD}
+  {PRESIDENTE}
+  {SECRETARIO}
+  {VOCAL1}
+  {VOCAL2}
+  {VOCAL3}
+  {SUPLENTE1}
+  {SUPLENTE2}
+  {ESCUELA, LUGAR}
+  {A\~{N}O}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%% RESUMEN/ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+\include{resumen}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\selectlanguage{american}
+
+\thispagestyle{plain}
+\include{abstract}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% ACKS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\rule{0cm}{3cm}
+\begin{flushright}
+\textbf{To my Family} \\
+\end{flushright}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+\thispagestyle{plain}
+\include{ack}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{name=\chapter}{\normalfont\huge\bfseries}{}{0pt}{\filleft{\parbox{\textwidth}{\filleft\chaptitlefont #1}}}[\vspace{2pc}{\titlerule[2pt]}]
+%%%%%%%%%%%%%%%%%%%%% CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% TABLES  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% ALGORITHM  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listofalgorithms
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% GLOSSARY  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printglossary[style=mylist, type=\acronymtype,title=Nomenclature]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%% SYMBOLS  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printglossary[style=mysymbol, title={Symbols}]
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mbox{}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%% TEXT %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagenumbering{arabic}
+
+\titleformat{name=\chapter}
+{\normalfont\huge\bfseries}
+%%%Over the number
+{\filleft\parbox{0.35\textwidth}{\filleft\chapnumfont\color{halfgray}\thechapter}\qquad}
+{0pt}
+{\filleft\llap{\parbox{\textwidth}{\filleft\chaptitlefont #1}}}
+[\vspace{2pc}{\titlerule[2pt]}]
+
+\part{First Part}
+\label{part:first}
+\newpage
+\thispagestyle{empty}
+
+\input{chap1_intro}
+\include{conclusions}
+
+%% Bibliography
+\titleformat{name=\chapter}{\normalfont\huge\bfseries}{}{0pt}{\filleft{\parbox{\textwidth}{\filleft\chaptitlefont #1}}}[\vspace{2pc}{\titlerule[2pt]}]
+\phantomsection
+\addcontentsline{toc}{part}{Bibliography}
+\bibliographystyle{apa}
+\bibliography{biblio}
+\end{document}

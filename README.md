@@ -3,4 +3,5 @@ In this repository are the different templates used for different latex document
 They are in the folder templates and we have the following documents:
 * Book
 * Technical Report
-
+* PFC
+* PHD Thesis template

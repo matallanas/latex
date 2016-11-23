@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xifthen}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage{etex}
+\usepackage{tikz}
+\usepackage{filecontents}
+\usepackage{units}
+\usetikzlibrary{
+  bending,
+	shadows,
+	external,
+	positioning,
+	scopes,
+	intersections,
+	snakes,
+	shapes.geometric,
+	shapes,
+	shapes.misc,
+	shapes.gates.logic.IEC,
+	shapes.gates.logic.US,
+	arrows,
+	backgrounds,
+	automata,
+	3d,
+	calc,
+	chains,
+	er,
+	matrix,
+	fit,
+	fadings,
+	patterns,
+	calendar,
+	decorations,
+	decorations.pathmorphing,
+	decorations.pathreplacing,
+  decorations.markings,
+	circuits,
+	circuits.ee.IEC,
+	through,
+	topaths
+} %% SOBRAN MUCHAS
+
+\tikzexternalize[mode=list and make,prefix=./]
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape -shell-escape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource" && pdftops -eps "\image".pdf "\image".foo.eps && epstool --copy --bbox "\image".foo.eps "\image".eps && rm "\image".foo.eps "\image".pdf "\image".dpth "\image".log "\image".dep}}
+
+%MACRO of the different elements for block diagram
+\begin{document}
+	% Libraries
+	% neuralNetwork
+	\tikzsetnextfilename{neuralNetwork}% name next TikZ figure
+	\input{neuralNetwork.tikz}	 % input TiKZ figure code
+\end{document}

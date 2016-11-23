@@ -1,0 +1,73 @@
+\def\layersep{1.5cm}
+\def\numberNeuronInput{1}
+\def\numberNeuronHidden{1}
+\def\numberNeuronOutput{1}
+\begin{tikzpicture}[shorten >=1pt,draw=black!50, node distance=\layersep]
+  \tikzset{normal arrow/.style={draw,-{stealth[black!50]},shorten <=0pt}}
+	\tikzset{body arrow/.style={draw,shorten <=0pt, shorten >= 0pt}}
+  \tikzset{head arrow/.style={draw,-{stealth[black!50]},shorten <=0pt, shorten >= 0pt}}
+  \tikzstyle{every pin edge}=[{stealth[black!50]}-,shorten <=1pt]
+  \tikzstyle{neuron}=[circle,draw=black!90,fill=black!25,minimum size=17pt,inner sep=0pt]
+  \tikzstyle{input neuron}=[neuron, fill=red!50];
+  \tikzstyle{output neuron}=[neuron, fill=violet!50];
+  \tikzstyle{hidden neuron}=[neuron, fill=black!20!yellow!75];
+  \tikzstyle{annot} = [text width=4em, text centered]
+  
+  \node[input neuron, pin=left:$y(t-\Delta t)$] (I-1) at (0,-1) {1};
+  \node[input neuron] (I-2) at (0,-2) {2};
+
+  % Draw the hidden layer nodes
+  \foreach \name / \y in {1,...,3}
+    \pgfmathsetmacro\result{\name + 2}
+    \path[yshift=0.5cm]
+      node[hidden neuron] (H-\name) at (\layersep,-\y cm) {\pgfmathprintnumber{\result}};
+
+  % Draw the output layer node
+  \node[output neuron,pin={[pin edge={normal arrow}]right:$x_i(t)$}, right of=H-2] (O-1) {6};
+
+  % Connect every node in the input layer with every node in the
+  % hidden layer.
+  \foreach \source in {1,...,\numberNeuronInput}
+    \foreach \dest in {1,...,3}
+      \draw[normal arrow] (I-\source.east) -- (H-\dest);
+
+  % Connect every node in the hidden layer with the output layer
+  \foreach \source in {1,...,\numberNeuronHidden}
+    \draw[normal arrow] (H-\source.east) -- (O-1);
+
+  %Self feedback
+  %Input
+  \foreach \x in {1,...,\numberNeuronInput} {
+    \coordinate (C1) at ($(I-\x.east) + (0.005,0)$);
+    \coordinate (C2) at ($(I-\x.north) + (0.35,0.15)$);
+	  \coordinate (C3) at ($(I-\x.north) + (-0.055,0.17)$);
+	  \coordinate (C4) at ($(I-\x.north) + (-0.1,0)$);
+    \draw [head arrow] (C1) to[out=45,in=-45] (C2) to[out=135,in=45] (C3) to[out=-135,in=90] (C4);
+  }
+  %Hidden
+  \foreach \x in {1,...,\numberNeuronHidden} {
+    \coordinate (C1) at ($(H-\x.east) + (0,0)$);
+    \coordinate (C2) at ($(H-\x.north) + (0.35,0.15)$);
+	  \coordinate (C3) at ($(H-\x.north) + (-0.055,0.17)$);
+	  \coordinate (C4) at ($(H-\x.north) + (-0.1,0)$);
+    \draw [head arrow] (C1) to[out=45,in=-45] (C2) to[out=135,in=45] (C3) to[out=-135,in=90] (C4);
+  }
+  \draw[normal arrow] (H-1.east) to[out=45,in=-45] ($(H-1.north) + (0.35,0.15)$) to[out=135,in=45] ($(H-1.north) + (-0.25,0.1)$) to[out=-135,in=135] ($(H-2.west) + (0.1,0.25)$);
+  \draw[normal arrow] (H-1.east) to[out=45,in=-45] ($(H-1.north) + (0.35,0.15)$) to[out=135,in=45] ($(H-1.north) + (-0.25,0.1)$) to[out=-135,in=135] ($(H-3.north) + (-0.05,0.025)$);
+  %Output
+  \foreach \x in {1,...,\numberNeuronOutput} {
+    \coordinate (C1) at ($(O-\x.east) + (0.015,0)$);
+    \coordinate (C2) at ($(O-\x.north) + (0.35,0.15)$);
+	  \coordinate (C3) at ($(O-\x.north) + (-0.055,0.17)$);
+	  \coordinate (C4) at ($(O-\x.north) + (-0.1,0)$);
+    \draw [head arrow] (C1) to[out=45,in=-45] (C2) to[out=135,in=45] (C3) to[out=-135,in=90] (C4);
+  }
+  %Feedback for outpu to the input
+  \coordinate (C1) at ($(O-1.east) + (0.015,0)$);
+  \coordinate (C2) at ($(I-2.south) + (0,-0.75)$);
+  \coordinate (C3) at ($(I-2.west) + (-0.4123,0.03)$);
+  \draw[normal arrow] ($(O-1.east) + (0.015,0)$) to[out=-45,in=90] ($(O-1.east) + (0.4,-0.75)$) to[out=-90,in=0] ($(I-2.south) + (0.75,-1.1)$) to[out=180,in=-90] ($(I-2.west) + (-0.4,-0.4)$) to[out=90,in=180] ($(I-2.west) + (0,0)$);
+  \draw[normal arrow] ($(O-1.east) + (0.015,0)$) to[out=-45,in=90] ($(O-1.east) + (0.4,-0.75)$) to[out=-90,in=0] ($(I-2.south) + (0.75,-1.1)$) to[out=180,in=-90] ($(I-2.west) + (-0.4,-0.4)$) to[out=90,in=-135] ($(I-1.west) + (0,-0.15)$);
+  %Other two inputs
+  \draw[normal arrow] ($(I-1.west) + (-0.4123,0)$) -- ($(I-2.west) + (-0.01,-0.01)$);
+\end{tikzpicture}
