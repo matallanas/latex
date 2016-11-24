@@ -1,0 +1,59 @@
+\definecolor{dC}{RGB}{85,153,255}
+\definecolor{dCRed}{RGB}{255,113,85}
+\definecolor{shadowdC}{RGB}{90,137,207}
+\definecolor{shadowdF}{RGB}{134,163,207}
+\definecolor{shadowdCRed}{RGB}{207,110,90}
+\definecolor{shadowdFRed}{RGB}{207,165,157}
+\definecolor{dF}{RGB}{149,191,255}
+\definecolor{dFRed}{RGB}{255,194,182}
+\definecolor{sun}{RGB}{255,230,128}
+\definecolor{sunArc}{RGB}{255,204,0}
+\definecolor{shadow}{RGB}{207,207,207}
+\definecolor{arcDay}{RGB}{184,184,184}
+\begin{animateinline}[autoplay,width=10.5cm]{10}
+\multiframe{200}{rPos=0+0.02}{ %300
+	\begin{tikzpicture}
+  \def\r{5}
+  \def\comPath{../animations}
+	\pgfmathparse{int(25*\rPos)}\let\nco=\pgfmathresult
+
+  \begin{scope}
+    \clip (0,0) arc (180:0:\r) |- (0,-0.2);
+    \draw[ultra thick,dC!\nco!dCRed,fill=dF!\nco!dFRed] plot[smooth, raw gnuplot] function{plot "\comPath/data/aggregated_consumption.data" u (($0)*10/27):((0.6-$1)*\rPos+$1*4) } |- (0,0) -- cycle;
+    \draw[ultra thick, dC!\nco!dCRed] (0,0) -- (10,0);
+    \begin{scope}
+      \clip (0,-1) -- (0,5) -- (6,-1) -- cycle; 
+      \draw [ultra thick,shadowdC!\nco!shadowdCRed,fill=shadow] plot[smooth, raw gnuplot] function{ plot "\comPath/data/aggregated_consumption.data" u (($0)*10/27):((0.6-$1)*\rPos+$1*4) } -- (0,5);
+      \draw [ultra thick,shadowdC!\nco!shadowdCRed,fill=shadowdF!\nco!shadowdFRed] plot[smooth, raw gnuplot] function{ plot "\comPath/data/aggregated_consumption.data" u (($0)*10/27):((0.6-$1)*\rPos+$1*4) } |- (0,0);
+      \draw[ultra thick, shadowdC!\nco!shadowdCRed] (0,0) -- (10,0);
+    \end{scope} 
+    \begin{scope}
+      \clip (4,-1) -- (10,5) -- (10,-1) -- cycle; 
+      \draw [ultra thick,shadowdC!\nco!shadowdCRed,fill=shadow] plot[smooth, raw gnuplot] function{ plot "\comPath/data/aggregated_consumption.data" u (($0)*10/27):((0.6-$1)*\rPos+$1*4) } -- (10,5);
+      \draw [ultra thick,shadowdC!\nco!shadowdCRed,fill=shadowdF!\nco!shadowdFRed] plot[smooth, raw gnuplot] function{ plot "\comPath/data/aggregated_consumption.data" u (($0)*10/27):((0.6-$1)*\rPos+$1*4) } |- (5,0);
+      \draw[ultra thick, shadowdC!\nco!shadowdCRed] (0,0) -- (10,0);
+    \end{scope} 
+  \end{scope} 
+
+  \draw[ultra thick,arcDay,line cap=round] (0,0) arc (180:0:\r);
+
+  \draw[sun,fill=sun] (\r,\r) circle (0.5);
+  \draw[ultra thick,sunArc] (\r,\r) circle (0.75);
+
+  \node[below, scale=1.5] at (0,0)   {$0$};
+  \node[below, scale=1.5] at (2.5,0) {$7$};
+  \node[below, scale=1.5] at (5,0)   {$14$};
+  \node[below, scale=1.5] at (7.5,0) {$21$};
+  \node[below, scale=1.5] at (10,0)  {$24$};
+  
+  \node[below, scale=1.5] at (5,-0.5) {$t(h)$};
+
+  \node at (3.25,3.65-\rPos*0.23) {\includegraphics[width=0.15\textwidth]{\comPath/data/hand.eps}};
+  \node at (1.0,0.85+\rPos*0.3) {\includegraphics[angle=180,width=0.15\textwidth]{\comPath/data/hand.eps}};
+  \node[yscale=-1] at (7,4.3-\rPos*0.39) {\includegraphics[angle=180, width=0.15\textwidth]{\comPath/data/hand.eps}};
+  \node[yscale=-1] at (9,1.0+\rPos*0.27) {\includegraphics[width=0.15\textwidth]{\comPath/data/hand.eps}};
+	
+  \end{tikzpicture}
+}
+\end{animateinline}
+

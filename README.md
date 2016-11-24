@@ -5,3 +5,6 @@ They are in the folder templates and we have the following documents:
 * Technical Report
 * PFC
 * PHD Thesis template
+* Presentation
+  * Oxygen
+  * Madrid

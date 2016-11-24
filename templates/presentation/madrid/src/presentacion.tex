@@ -1,0 +1,148 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.4 2004/10/07 20:53:08 tantau Exp $
+
+\documentclass{beamer}
+
+% This file is a solution template for:
+
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+\newcommand{\GDE}{\emph{Gesti\'{o}n de la Demanda El\'{e}ctrica}}
+%MATH
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\spectralnorm}[1]{\left|\left|#1\right|\right|_{2}}
+
+
+\mode<presentation>
+{
+  \usetheme{Madrid}
+	% or ...
+  \usecolortheme{whale}
+  %\setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[spanish, english]{babel}
+% or whatever
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+%\usepackage{natbib}
+\usepackage{eurosym}
+\newcommand{\spacing}{1.5}
+
+\usepackage{multimedia}
+\usepackage{hyperref}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+%For the pictures
+\usepackage{epic}\setlength{\unitlength}{1cm}
+\usepackage{eepic}\setlength{\unitlength}{1cm}
+\usepackage{longtable}
+\usepackage{array}
+
+\title[TITLE]
+{\large TITLE}
+
+\author[AUTHOR] % (optional, use only with lots of authors)
+{AUTHOR}
+
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\date[DATE] % (optional)
+{DATE}
+
+\institute[INSTITUTION] % (optional, but mostly needed)
+{INSTITUTION}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+%\pgfdeclareimage[height=0.5cm]{university-logo}{fotos/iridia.png}
+%\logo{\pgfuseimage{university-logo}}
+
+%\logo{\includegraphics[height=1cm]{fig/etsit.eps} \hspace{0.10cm} \vspace{0.10cm}}
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{~}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+\def\newblock{\hskip .11em plus .33em minus .07em}
+\graphicspath{{../figs/}}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contents}
+	\tableofcontents
+	% You might wish to add the option [pausesections]
+\end{frame}
+
+%******************************************************************************************************************************************************
+\section{Section}
+
+%------01------%
+\begin{frame}
+  \frametitle{Frame title}
+\end{frame}
+
+
+%******************************************************************************************************************************************************
+\section{Conclusion}
+
+%------38------%
+\begin{frame}
+  \frametitle{Thank you}
+	\LARGE
+	\vspace{4cm}
+	\emph{Thank you very much}
+\end{frame}
+
+\end{document}

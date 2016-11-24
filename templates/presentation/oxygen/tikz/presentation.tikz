@@ -1,0 +1,135 @@
+\definecolor{pacific}{rgb}{0,0.47,0.68};
+\definecolor{daffodil}{rgb}{1,0.84,0.35};
+\tikzsetnextfilename{sgConvergency}% name next TikZ figure
+\begin{tikzpicture}
+  \def\r{10}
+  \def\angle{18}
+  \def\inside{0.75*\r}
+  \def\Ca{(\angle:\inside) circle [radius=\r]}
+  \def\Cb{(\angle+72:\inside) circle [radius=\r]}
+  \def\Cc{(\angle+2*72:\inside) circle [radius=\r]}
+  \def\Cd{(\angle+3*72:\inside) circle [radius=\r]}
+  \def\Ce{(\angle+4*72:\inside) circle [radius=\r]}
+  \colorlet{col1}{red!30!white}
+  \colorlet{col2}{green!30!white}
+  \colorlet{col3}{blue!30!white}
+  \colorlet{col4}{pacific!60}
+  \colorlet{col5}{daffodil!60}
+  
+  \fill[col1] \Ca; 
+  \fill[col2] \Cb; 
+  \fill[col3] \Cc; 
+  \fill[col4] \Cd; 
+  \fill[col5] \Ce; 
+  %% Intersection 2-2
+  \begin{scope}
+    \clip \Ca; 
+    \clip \Cb; 
+    \fill[col1!50!col2] \Cb;
+  \end{scope}
+  \begin{scope}
+    \clip \Cb; 
+    \clip \Cc; 
+    \fill[col2!50!col3] \Cc;
+  \end{scope}
+  \begin{scope}
+    \clip \Cc; 
+    \clip \Cd; 
+    \fill[col3!50!col4] \Cd;
+  \end{scope}
+  \begin{scope}
+    \clip \Cd; 
+    \clip \Ce; 
+    \fill[col4!50!col5] \Ce;
+  \end{scope}
+  \begin{scope}
+    \clip \Ce; 
+    \clip \Ca; 
+    \fill[col5!50!col1] \Ca;
+  \end{scope}
+  %% Intersection 3-3
+  \begin{scope}
+    \clip \Ca; 
+    \clip \Cb; 
+    \clip \Cc; 
+    \fill[col1!50!col2!50!col3] \Cc;
+  \end{scope}
+  \begin{scope}
+    \clip \Cb; 
+    \clip \Cc; 
+    \clip \Cd; 
+    \fill[col2!50!col3!50!col4] \Cd;
+  \end{scope}
+  \begin{scope}
+    \clip \Cc; 
+    \clip \Cd; 
+    \clip \Ce; 
+    \fill[col3!50!col4!50!col5] \Ce;
+  \end{scope}
+  \begin{scope}
+    \clip \Cd; 
+    \clip \Ce; 
+    \clip \Ca; 
+    \fill[col4!50!col5!50!col1] \Ca;
+  \end{scope}
+  \begin{scope}
+    \clip \Ce; 
+    \clip \Ca; 
+    \clip \Cb; 
+    \fill[col5!50!col1!50!col2] \Cb;
+  \end{scope}
+  %% Intersection 4-4
+  \begin{scope}
+    \clip \Ca; 
+    \clip \Cb; 
+    \clip \Cc; 
+    \clip \Cd; 
+    \fill[col1!50!col2!50!col3!50!col4] \Cd;
+  \end{scope}
+  \begin{scope}
+    \clip \Cb; 
+    \clip \Cc; 
+    \clip \Cd; 
+    \clip \Ce; 
+    \fill[col2!50!col3!50!col4!50!col5] \Ce;
+  \end{scope}
+  \begin{scope}
+    \clip \Cc; 
+    \clip \Cd; 
+    \clip \Ce; 
+    \clip \Ca; 
+    \fill[col3!50!col4!50!col5!50!col1] \Ca;
+  \end{scope}
+  \begin{scope}
+    \clip \Cd; 
+    \clip \Ce; 
+    \clip \Ca; 
+    \clip \Cb; 
+    \fill[col4!50!col5!50!col1!50!col2] \Cb;
+  \end{scope}
+  \begin{scope}
+    \clip \Ce; 
+    \clip \Ca; 
+    \clip \Cb; 
+    \clip \Cc; 
+    \fill[col5!50!col1!50!col2!50!col3] \Cc;
+  \end{scope}
+  %% Intersection 5-5
+  \begin{scope}
+    \clip \Ca; 
+    \clip \Cb; 
+    \clip \Cc; 
+    \clip \Cd; 
+    \clip \Ce; 
+    \fill[col1!50!col2!50!col3!50!col4!50!col5] \Ce;
+  \end{scope}
+
+  \node[scale=\r/2,align=center] at (0,0) {Smart\\ Grid};
+  \node[scale=\r/2,align=center] at (\angle:\inside+\r/1.5) {ICT};
+  \node[scale=\r/2,align=center] at (\angle+72:\inside+\r/1.5) {Grid};
+  \node[scale=\r/2,align=center] at (\angle+2*72:\inside+\r/1.5) {Renewable \\ Energies};
+  \node[scale=\r/2,align=center] at (\angle+3*72:\inside+\r/1.5) {Storage \\ Systems};
+  \node[scale=\r/2,align=center] at (\angle+4*72:\inside+\r/1.5) {Demand Side \\ Management};
+
+\end{tikzpicture}
+
